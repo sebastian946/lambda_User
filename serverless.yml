@@ -1,0 +1,35 @@
+service: my-lambda-project
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-east-2
+
+functions:
+  createHandler:
+    handler: src/handlers/createHandler.handler
+    events:
+      - http:
+          path: create
+          method: post
+
+  readHandler:
+    handler: src/handlers/readHandler.handler
+    events:
+      - http:
+          path: read/{user}{fullname}
+          method: get
+
+  updateHandler:
+    handler: src/handlers/updateHandler.handler
+    events:
+      - http:
+          path: update/{user}{fullname}
+          method: put
+
+  deleteHandler:
+    handler: src/handlers/deleteHandler.handler
+    events:
+      - http:
+          path: delete/{user}{fullname}
+          method: delete
